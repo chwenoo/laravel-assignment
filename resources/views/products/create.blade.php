@@ -14,22 +14,22 @@
             <form action="{{route('products.store')}}" method="POST" class="form">
                 @csrf
                 <div class="mb-2">
-                    <label for="name">Name:</label>
+                    <label for="name" class="fw-semibold">Name:</label>
                     <input type="text" name="name" id="name" class="form-control" required>
                 </div>
                 <div class="mb-2">
-                    <label for="description">Description:</label>
+                    <label for="description" class="fw-semibold">Description:</label>
                     <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="status">Status:</label>
+                    <label for="status" class="fw-semibold">Status:</label>
                     <select name="status" id="status" class="form-select">
                         <option value="1">true</option>
                         <option value="0">false</option>
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="price">Price:</label>
+                    <label for="price" class="fw-semibold">Price:</label>
                     <input type="text" name="price" id="price" class="form-control" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">create</button>
