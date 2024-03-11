@@ -13,6 +13,7 @@
         <div style="max-width: 500px" class="mx-auto">
             <form action="{{route('products.update', $product->id)}}" method="POST" class="form">
                 @csrf
+                @method("PATCH")
                 <div class="mb-2">
                     <label for="name" class="fw-semibold">Name:</label>
                     <input type="text" name="name" id="name" class="form-control" value="{{$product->name}}">
