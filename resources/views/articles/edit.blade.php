@@ -11,6 +11,9 @@
     <div class="container">
         <h1 class="text-center">Update Article</h1>
         <div style="max-width: 500px" class="mx-auto">
+            @error('slug')
+                <div class="alert alert-danger mt-3">{{$message}}</div>
+            @enderror
             <form action="{{route('articles.update', $article->id)}}" method="POST" class="form">
                 @csrf
                 @method('PATCH')

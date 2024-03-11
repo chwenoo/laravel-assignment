@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Http\Requests\StorePostRequest;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $articles = Article::all();
@@ -19,28 +25,8 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate([
-            'title' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'context' => ['required', 'string'],
-            'excerpt' => ['required', 'string'],
-        ]);
-
-        // $validator = Validator::make($request->all(), [
-        //     'title' => ['required', 'string'],
-        //         'slug' => ['required', 'string'],
-        //         'context' => ['required', 'string'],
-        //         'excerpt' => ['required', 'string'],
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return redirect('my-form')
-        //                 ->withErrors($validator)
-        //                 ->withInput();
-        // }
-
         Article::create([
             'title' => $request->title,
             'slug' => $request->slug,
@@ -62,7 +48,7 @@ class ArticleController extends Controller
         return view('articles.edit', compact('article'));
     }
 
-    public function update(Request $request, int $id)
+    public function update(StorePostRequest $request, int $id)
     {
         $article = Article::find($id);
         $article->update([
