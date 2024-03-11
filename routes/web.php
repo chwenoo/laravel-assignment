@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\Article\ArticleController;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +29,6 @@ Route::post('/products/update/{id}', [ProductController::class, 'update'])->name
 
 Route::resource('articles', ArticleController::class);
 
-// Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-// Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
-// Route::post('/articles/store', [ArticleController::class, 'store'])->name('articles.store');
-// Route::get('/articles/edit/{id}', [ArticleController::class, 'edit'])->name('articles.edit');
-// Route::get('/articles/show/{id}', [ArticleController::class, 'show'])->name('articles.show');
-// Route::post('/articles/update/{id}', [ArticleController::class, 'update'])->name('articles.update');
-// Route::post('/articles/destroy/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
