@@ -19,6 +19,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Slug</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Context</th>
                     <th scope="col">Excerpt</th>
                     <th scope="col">created_at</th>
@@ -32,6 +33,9 @@
                         <th scope="row">{{ $article->id }}</th>
                         <td>{{ $article->title }}</td>
                         <td>{{ $article->slug }}</td>
+                        <td>
+                            <img src="{{asset('uploadedimages/'.$article->image)}}" alt="foto" width="100">
+                        </td>
                         <td>{{ $article->context }}</td>
                         <td>{{ $article->excerpt }}</td>
                         <td>{{ $article->created_at }}</td>

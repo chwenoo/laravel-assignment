@@ -27,9 +27,16 @@ class ArticleController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        // $path = $request->file('image')->store('artilce');
+        // dd($request->all());
+        $imgName = time().".".$request->image->getClientOriginalExtension();
+        // dd($imgName);
+        $request->image->move(public_path('/uploadedimages'), $imgName);
+
         Article::create([
             'title' => $request->title,
             'slug' => $request->slug,
+            'image' => $imgName,
             'context' => $request->context,
             'excerpt' => $request->excerpt,
         ]);

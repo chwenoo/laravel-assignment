@@ -19,6 +19,8 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
+
+        // $path = $request->file('image')->store('product');
         Product::create([
             'name' => $request->name,
             'description' => $request->description,
