@@ -15,4 +15,8 @@ class Article extends Model
         'context',
         'excerpt',
     ];
+
+    public function articleImage() {
+        return $this->hasMany(ArticleImage::class);
+    }
 }
