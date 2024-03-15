@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Article\ArticleController;
 use App\Http\Controllers\Product\ProductController;
+use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Article;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +35,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('articles', ArticleController::class);
     Route::resource('products', ProductController::class);
+    Route::resource('users', UserController::class);
 });
+
 
 require __DIR__.'/auth.php';
 

@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Article</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+@extends('layouts.master')
+@section('content')
     <div class="container mt-3">
         <h1 class="text-center">New Article</h1>
         {{-- @dd($errors); --}}
@@ -31,9 +23,9 @@
                 </div>
                 <div class="mb-2">
                     <label for="image" class="fw-semibold">Image:</label>
-                    <input type="file" name="image" id="image" class="form-control">
-                    @if($errors->first('image'))
-                        <div class="text-danger">{{$errors->first('image')}}</div>
+                    <input type="file" name="images[]" multiple id="image" class="form-control">
+                    @if($errors->first('images'))
+                        <div class="text-danger">{{$errors->first('images')}}</div>
                     @endif
                 </div>
                 <div class="mb-2">
@@ -54,5 +46,4 @@
             </form>
         </div>
     </div>
-</body>
-</html>
+@endsection

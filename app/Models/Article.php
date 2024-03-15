@@ -12,8 +12,11 @@ class Article extends Model
     protected $fillable = [
         'title',
         'slug',
-        'image',
         'context',
         'excerpt',
     ];
+
+    public function articleImage() {
+        return $this->hasMany(ArticleImage::class);
+    }
 }

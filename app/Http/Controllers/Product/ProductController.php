@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -20,11 +21,16 @@ class ProductController extends Controller
 
     public function store(Request $request) {
 
-        // $path = $request->file('image')->store('product');
+        $imgName = time().'.'.$request->image->getClientOriginalExtension();
+        // $request->image->move(public_path('/product_images'), $imgName);
+        $request->file('image')->storeAs('public/img', $imgName);
+        // dd($path);
+
         Product::create([
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
+            'image' => $imgName,
             'price' => $request->price,
         ]);
 

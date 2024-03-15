@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Http\Requests\StorePostRequest;
+use App\Models\ArticleImage;
 
 class ArticleController extends Controller
 {
@@ -16,7 +17,10 @@ class ArticleController extends Controller
 
     public function index()
     {
-        $articles = Article::all();
+        // $articles = Article::all();
+        $articles = Article::with('ArticleImage')->get();
+        // dd($articles);
+
         return view('articles.index', compact('articles'));
     }
 
@@ -27,26 +31,40 @@ class ArticleController extends Controller
 
     public function store(StorePostRequest $request)
     {
-        // $path = $request->file('image')->store('artilce');
-        // dd($request->all());
-        $imgName = time().".".$request->image->getClientOriginalExtension();
-        // dd($imgName);
-        $request->image->move(public_path('/uploadedimages'), $imgName);
+        $article = new Article;
+        $article->title = $request->title;
+        $article->slug = $request->slug;
 
-        Article::create([
-            'title' => $request->title,
-            'slug' => $request->slug,
-            'image' => $imgName,
-            'context' => $request->context,
-            'excerpt' => $request->excerpt,
-        ]);
+        $article->context = $request->context;
+        $article->excerpt = $request->excerpt;
+        $article->save();
+
+        $images = $request->file('images');
+        // dd($images);
+
+        foreach($images as $image) {
+
+            $imgName = uniqid().".".$image->getClientOriginalExtension();
+            // $image->storeAs('public/img', $imgName);
+            $image->move(public_path('/uploadedimages'), $imgName);
+
+            $image = new ArticleImage;
+            $image->name = $imgName;
+            $image->article_id = $article->id;
+            $image->save();
+        }
+        // dd($article);
+        // $article->save();
+
         return redirect()->route('articles.index');
     }
 
     public function show(int $id)
     {
         $article = Article::find($id);
-        return view('articles.detail', compact('article'));
+        $images = ArticleImage::find($id);
+
+        return view('articles.detail', compact('article', 'images'));
     }
 
     public function edit(int $id)

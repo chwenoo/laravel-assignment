@@ -32,7 +32,8 @@ class StorePostRequest extends FormRequest
                 Rule::unique('articles')->ignore($this->route('article'))
 
              ],
-             'image' => ['required', 'image'],
+            'images' => ['required', 'array'],
+            'images.*' => ['image'],
             'context' => ['required', 'string'],
             'excerpt' => ['required', 'string'],
         ];
