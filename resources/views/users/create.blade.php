@@ -2,3 +2,4 @@
 @section('content')
     @include('auth.register');
 @endsection
+

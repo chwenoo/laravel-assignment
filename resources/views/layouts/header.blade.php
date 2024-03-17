@@ -17,5 +17,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    {{-- Multiple Select Bootstrap --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.12/dist/css/bootstrap-select.min.css">
+
 
 </head>

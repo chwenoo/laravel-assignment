@@ -1,13 +1,13 @@
 <?php
 
 use App\Http\Controllers\Article\ArticleController;
+use App\Http\Controllers\Permission\PermissionController;
 use App\Http\Controllers\Product\ProductController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ProfileController;
-use App\Models\Article;
-use App\Models\Product;
-use App\Models\User;
+use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $role = Role::find(12);
+    dd($role->syncPermissions(['Product', 'Article']));
+
+
     return view('welcome');
 });
 
@@ -36,8 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('articles', ArticleController::class);
     Route::resource('products', ProductController::class);
     Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
 });
-
 
 require __DIR__.'/auth.php';
 
