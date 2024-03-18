@@ -44,9 +44,8 @@ class RoleController extends Controller
             'name' => $request->name,
         ]);
 
-
         $role->syncPermissions($request->permissions);
-        // foreach($request->permission as $permission)
+        // foreach($request->permissions as $permission)
         // {
         //     $role->givePermissionTo($permission);
 

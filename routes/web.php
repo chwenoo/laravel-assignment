@@ -7,7 +7,6 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Role\RoleController;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,10 +20,6 @@ use Spatie\Permission\Models\Role;
 */
 
 Route::get('/', function () {
-    $role = Role::find(12);
-    dd($role->syncPermissions(['Product', 'Article']));
-
-
     return view('welcome');
 });
 

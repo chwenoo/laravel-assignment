@@ -17,7 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        // $users = User::all();
+        // with relationship
+        $users = User::with('roles')->get();
+        // dd($users);
+
         return view('users.index', compact('users'));
     }
 
@@ -26,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -36,11 +41,13 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Password::defaults()],
         ]);
 
-        $role = Role::where('id', $request->role_id)->first();
+        // $role = Role::where('id', $request->role_id)->first();
+        $role = Role::find($request->role);
+        // dd($role);
 
         $user = User::create([
             'name' => $request->name,
