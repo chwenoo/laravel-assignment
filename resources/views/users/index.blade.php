@@ -12,6 +12,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     {{-- <th scope="col">Password</th> --}}
+                    <th scope="col">Role</th>
                     <th scope="col">created_at</th>
                     <th scope="col">updated_at</th>
                     <th scope="col">Action</th>
@@ -19,11 +20,18 @@
             </thead>
             <tbody>
                 @foreach ($users as $user)
+                    {{-- @dd($user); --}}
                     <tr>
                         <th scope="row">{{ $user->id }}</th>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         {{-- <td>{{ $user->password }}</td> --}}
+                        <td>
+                            {{$user->roles[0]['name']}}
+                            {{-- @foreach ($user->roles as $role)
+                                {{$role->name}}
+                            @endforeach --}}
+                        </td>
                         <td>{{ $user->created_at }}</td>
                         <td>{{ $user->updated_at }}</td>
                         <td>

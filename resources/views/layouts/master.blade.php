@@ -23,7 +23,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -104,6 +104,20 @@
                 <a class="nav-link" href="{{route('articles.index')}}">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Article</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('roles.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Role</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('permissions.index')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Permission</span>
                 </a>
             </li>
 
@@ -325,7 +339,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">TExter</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::user()->name}}</span>
                                 <img class="img-profile rounded-circle"
                                     src="img/undraw_profile.svg">
                             </a>
