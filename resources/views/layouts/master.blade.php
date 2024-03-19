@@ -22,11 +22,13 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="{{route('dashboard')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+            @can('dashboard')
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{route('dashboard')}}">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+            @endcan
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -100,41 +102,50 @@
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('articles.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Article</span>
-                </a>
-            </li>
+            @can('article_list')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('articles.index')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Article</span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('roles.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Role</span>
-                </a>
-            </li>
+            @can('role_list')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('roles.index')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Role</span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('permissions.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Permission</span>
-                </a>
-            </li>
+            @can('permission_list')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('permissions.index')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Permission</span>
+                    </a>
+                </li>
+            @endcan
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('products.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Product</span>
-                </a>
-            </li>
+            @can('product_list')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('products.index')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Product</span>
+                    </a>
+                </li>
+            @endcan
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('users.index')}}">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>User</span>
-                </a>
-            </li>
+            @can('user_list')
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('users.index')}}">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>User</span>
+                    </a>
+                </li>
+            @endcan
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">

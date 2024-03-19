@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
@@ -14,6 +15,9 @@ class RoleController extends Controller
      */
     public function index()
     {
+        if (!Gate::allows('role_list')) {
+            return abort(401);
+        }
         // $roles = Role::all();
         $roles = Role::with('permissions')->get();
         // dd($roles);
@@ -27,6 +31,9 @@ class RoleController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('role_create')) {
+            return abort(401);
+        }
         $permissions = Permission::all();
         return view('roles.create', compact('permissions'));
     }
@@ -36,6 +43,9 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('role_create')) {
+            return abort(401);
+        }
         $request->validate([
             'name' => ['required', 'unique:roles'],
         ]);

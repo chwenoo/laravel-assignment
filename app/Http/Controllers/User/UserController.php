@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Gate;
 
 
 class UserController extends Controller
@@ -17,6 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (!Gate::allows('user_list')) {
+            return abort(401);
+        }
         // $users = User::all();
         // with relationship
         $users = User::with('roles')->get();
@@ -30,6 +34,9 @@ class UserController extends Controller
      */
     public function create()
     {
+        if (!Gate::allows('user_create')) {
+            return abort(401);
+        }
         $roles = Role::all();
         return view('users.create', compact('roles'));
     }
@@ -39,6 +46,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Gate::allows('user_create')) {
+            return abort(401);
+        }
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users'],
